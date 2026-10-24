@@ -8,6 +8,15 @@ package ca1_algorithms.constructs;
  *
  * @author Dylan
  */
-public class Stack {
-    
+public class Stack implements StorageInterface {
+    private FoodTray[] arr;
+    private int top;
+    private int capacity;
+
+    public Stack(int size) {
+        arr = new FoodTray[size];
+        capacity = size;
+        top = -1;
+    }
 }
+    
