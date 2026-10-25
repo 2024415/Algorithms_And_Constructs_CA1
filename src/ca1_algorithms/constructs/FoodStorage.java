@@ -36,6 +36,21 @@ public class FoodStorage {
             weight = 100;
         }
         
+        // 3. Best-before check (max 2 weeks, from original FoodStorage.java)
+        System.out.print("Best-before (YYYY-MM-DD, max 2 weeks): ");
+        String dateInput = sc.nextLine();
+
+        LocalDate date = LocalDate.parse(dateInput);
+
+        // Check 2-week limit
+        if (date.isAfter(LocalDate.now().plusWeeks(2)) || date.isBefore(LocalDate.now())) {
+            System.out.println("⚠ Invalid date! Setting to max 2 weeks.");
+            date = LocalDate.now().plusWeeks(2);
+        }
+
+        return new FoodTray(name, weight, date);
+    }
+    
     /**
      * @param args the command line arguments
      */
