@@ -27,6 +27,15 @@ public class FoodStorage {
             name = "Burger";
         }
         
+        // 2. Weight check (grams > 0)
+        System.out.print("Weight (grams): ");
+        double weight = sc.nextDouble();
+        sc.nextLine(); // clear buffer
+        if (weight <= 0) {
+            System.out.println("⚠ Invalid weight! Setting to default: 100g.");
+            weight = 100;
+        }
+        
     /**
      * @param args the command line arguments
      */
