@@ -10,7 +10,10 @@ import java.time.format.DateTimeFormatter;
 /**
  *
  * @author Dylan
+ * Models a physical fast-food tray stored in the unit.
+ * All getters and object instantiations in this class operate at O(1) Time Complexity.
  */
+
 // Child class inheriting from MenuItem
 public class FoodTray extends MenuItem {
     private LocalDate bestBeforeDate;
