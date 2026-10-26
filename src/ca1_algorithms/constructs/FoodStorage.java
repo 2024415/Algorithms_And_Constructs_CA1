@@ -9,12 +9,12 @@ import java.time.LocalDate;
  */
 public class FoodStorage {
 
-
+    
     public static FoodTray getFoodItem(Scanner sc) {
 
         System.out.println("\nEnter details for food item:");
 
-        
+        // 1. Name check (5 allowed fast-food items)
         System.out.print("Name (Burger, Pizza, Fries, Sandwich, Hotdog): ");
         String name = sc.nextLine().trim();
         if (!name.equalsIgnoreCase("Burger") && !name.equalsIgnoreCase("Pizza") &&
@@ -24,7 +24,7 @@ public class FoodStorage {
             name = "Burger";
         }
 
-        
+        // 2. Weight check (grams > 0)
         System.out.print("Weight (grams): ");
         double weight = 0;
         try {
@@ -39,7 +39,7 @@ public class FoodStorage {
             weight = 100;
         }
 
-       
+        // 3. Best-before check (max 2 weeks)
         System.out.print("Best-before (YYYY-MM-DD, max 2 weeks): ");
         String dateInput = sc.nextLine();
         LocalDate date;
@@ -61,7 +61,7 @@ public class FoodStorage {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int size = 8; 
+        int size = 8; // Maximum capacity of the storage is 8 trays
 
         
         Stack stack = new Stack(size);
