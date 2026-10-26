@@ -108,8 +108,12 @@ public class FoodStorage {
 
                     switch (choice) {
                         case 1:
-                            FoodTray val = getFoodItem(sc);
-                            stack.push(val);
+                            if (stack.isFull()) {
+                                System.out.println("Stack Overflow");
+                            } else {
+                                FoodTray val = getFoodItem(sc);
+                                stack.push(val);
+                            }
                             break;
                         case 2:
                             FoodTray popped = stack.pop();
