@@ -1,5 +1,10 @@
 package algorithms_and_constructs_ca1;
 
+/**
+ * Custom Circular Queue Implementation.
+ * Models storing up to 8 food trays (FIFO: Enqueue at front, Dequeue at opposite side).
+ * Implements StorageInterface for Abstraction and Polymorphism.
+ */
 public class CircularQueue implements StorageInterface {
     private FoodTray[] queue;
     private int front, rear, size;
@@ -11,15 +16,27 @@ public class CircularQueue implements StorageInterface {
         this.rear = -1;
     }
 
+    /**
+     * Checks if the queue is empty.
+     * Time Complexity: O(1) - Constant time check on pointer state.
+     */
     @Override
     public boolean isEmpty() {
         return front == -1;
     }
 
+    /**
+     * Checks if the queue has reached max capacity using modular arithmetic.
+     * Time Complexity: O(1) - Constant time arithmetic calculation.
+     */
     public boolean isFull() {
         return (rear + 1) % size == front;
     }
 
+    /**
+     * Inserts a food tray at the front side of the storage unit.
+     * Time Complexity: O(1) - Constant time insertion using index pointers.
+     */
     public void enqueue(FoodTray item) {
         if (isFull()) {
             System.out.println("Queue is full! Cannot add more trays (Max capacity: " + size + ").");
@@ -33,12 +50,16 @@ public class CircularQueue implements StorageInterface {
         }
     }
 
+    /**
+     * Removes a food tray from the opposite side of the storage unit.
+     * Time Complexity: O(1) - Constant time removal without array shifts.
+     */
     public void dequeue() {
         if (isEmpty()) {
             System.out.println("Queue is empty! No items to remove.");
         } else {
             FoodTray item = queue[front];
-            if (front == rear) {
+            if (front == rear) { // Only one item was in the queue
                 front = rear = -1;
             } else {
                 front = (front + 1) % size;
@@ -47,6 +68,10 @@ public class CircularQueue implements StorageInterface {
         }
     }
 
+    /**
+     * Displays the food item present at the front of the queue.
+     * Time Complexity: O(1) - Direct array lookup via front pointer.
+     */
     @Override
     public void peek() {
         if (isEmpty()) {
@@ -56,6 +81,10 @@ public class CircularQueue implements StorageInterface {
         }
     }
 
+    /**
+     * Displays all items currently present in the queue.
+     * Time Complexity: O(n) - Iterates through n elements currently stored.
+     */
     @Override
     public void display() {
         if (isEmpty()) {
@@ -67,20 +96,28 @@ public class CircularQueue implements StorageInterface {
                 System.out.println(queue[i]);
                 i = (i + 1) % size;
             }
-            System.out.println(queue[rear]);
+            System.out.println(queue[rear]); // Print rear element
         }
     }
 
+    /**
+     * Calculates current number of elements in the queue.
+     * Time Complexity: O(1) - Mathematical computation.
+     */
     public void size() {
         if (isEmpty()) {
             System.out.println("Queue size: 0");
+        } else if (rear >= front) {
+            System.out.println("Queue size: " + (rear - front + 1));
         } else {
-            int currentSize = (rear - front + 1 + size) % size;
-            if (currentSize == 0) currentSize = size;
-            System.out.println("Queue size: " + currentSize);
+            System.out.println("Queue size: " + (size - front + rear + 1));
         }
     }
 
+    /**
+     * Performs a linear search for a food item by name.
+     * Time Complexity: O(n) - Traverses elements sequentially until match/end.
+     */
     @Override
     public void search(String name) {
         if (isEmpty()) {
