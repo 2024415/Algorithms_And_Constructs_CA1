@@ -1,20 +1,25 @@
-package algorithms_and_constructs_ca1;
+package ca1_algorithms.constructs;
 
 import java.util.Scanner;
 import java.time.LocalDate;
 
 /**
-
+ * Fast-Food Storage System Driver Application.
+ * Supports Stack (LIFO) and Circular Queue (FIFO) storage mechanisms.
+ * 
  * @author Dylan, Gabriel
  */
 public class FoodStorage {
 
-    
+    /**
+     * Helper method to capture, validate, and construct a FoodTray instance.
+     * Validates item names, positive weight values, and 2-week expiry limits.
+     */
     public static FoodTray getFoodItem(Scanner sc) {
 
         System.out.println("\nEnter details for food item:");
 
-        // 1. Name check (5 allowed fast-food items)
+        // 1. Validation of Fast-Food Item Name (5 allowed types)
         System.out.print("Name (Burger, Pizza, Fries, Sandwich, Hotdog): ");
         String name = sc.nextLine().trim();
         if (!name.equalsIgnoreCase("Burger") && !name.equalsIgnoreCase("Pizza") &&
@@ -24,30 +29,29 @@ public class FoodStorage {
             name = "Burger";
         }
 
-        // 2. Weight check (grams > 0)
-        System.out.print("Weight (grams): ");
+        // 2. Validation of Weight (grams > 0 with robust exception handling)
         double weight = 0;
+        System.out.print("Weight (grams): ");
         try {
-            weight = sc.nextDouble();
+            weight = Double.parseDouble(sc.nextLine().trim());
         } catch (Exception e) {
-            System.out.println("⚠ Invalid weight format!");
+            System.out.println("⚠ Invalid weight input format!");
         }
-        sc.nextLine(); 
 
         if (weight <= 0) {
-            System.out.println("⚠ Setting weight to default: 100g.");
+            System.out.println("⚠ Weight must be positive! Setting to default: 100g.");
             weight = 100;
         }
 
-        // 3. Best-before check (max 2 weeks)
+        // 3. Validation of Best-Before Date (max 2 weeks from current date)
         System.out.print("Best-before (YYYY-MM-DD, max 2 weeks): ");
-        String dateInput = sc.nextLine();
+        String dateInput = sc.nextLine().trim();
         LocalDate date;
 
         try {
             date = LocalDate.parse(dateInput);
             if (date.isAfter(LocalDate.now().plusWeeks(2)) || date.isBefore(LocalDate.now())) {
-                System.out.println("⚠ Date out of range (max 2 weeks)! Setting to max limit.");
+                System.out.println("⚠ Date out of allowed range (max 2 weeks)! Setting to max limit.");
                 date = LocalDate.now().plusWeeks(2);
             }
         } catch (Exception e) {
@@ -61,9 +65,8 @@ public class FoodStorage {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        int size = 8; // Maximum capacity of the storage is 8 trays
+        int size = 8; // Storage unit maximum capacity (8 trays limit)
 
-        
         Stack stack = new Stack(size);
         CircularQueue q = new CircularQueue(size);
 
@@ -78,14 +81,14 @@ public class FoodStorage {
 
             int mode = 0;
             try {
-                mode = sc.nextInt();
+                mode = Integer.parseInt(sc.nextLine().trim());
             } catch (Exception e) {
-                System.out.println("⚠ Input must be a number!");
+                System.out.println("⚠ Input must be a valid number!");
+                continue;
             }
-            sc.nextLine(); 
 
             if (mode == 1) {
-                
+                // Stack Sub-Menu (LIFO)
                 while (true) {
                     System.out.println("\n--- Stack Menu (LIFO) ---");
                     System.out.println("1. Push (Add item)");
@@ -98,22 +101,18 @@ public class FoodStorage {
 
                     int choice = 0;
                     try {
-                        choice = sc.nextInt();
+                        choice = Integer.parseInt(sc.nextLine().trim());
                     } catch (Exception e) {
-                        System.out.println("⚠ Input must be a number!");
+                        System.out.println("⚠ Input must be a valid number!");
+                        continue;
                     }
-                    sc.nextLine(); 
 
                     if (choice == 6) break;
 
                     switch (choice) {
                         case 1:
-                            if (stack.isFull()) {
-                                System.out.println("Stack Overflow");
-                            } else {
-                                FoodTray val = getFoodItem(sc);
-                                stack.push(val);
-                            }
+                            FoodTray val = getFoodItem(sc);
+                            stack.push(val);
                             break;
                         case 2:
                             FoodTray popped = stack.pop();
@@ -139,7 +138,7 @@ public class FoodStorage {
                     }
                 }
             } else if (mode == 2) {
-               
+                // Circular Queue Sub-Menu (FIFO)
                 while (true) {
                     System.out.println("\n--- Circular Queue Menu (FIFO) ---");
                     System.out.println("1. Enqueue (Add item)");
@@ -153,11 +152,11 @@ public class FoodStorage {
 
                     int choice = 0;
                     try {
-                        choice = sc.nextInt();
+                        choice = Integer.parseInt(sc.nextLine().trim());
                     } catch (Exception e) {
-                        System.out.println("⚠ Input must be a number!");
+                        System.out.println("⚠ Input must be a valid number!");
+                        continue;
                     }
-                    sc.nextLine(); 
 
                     if (choice == 7) break;
 
