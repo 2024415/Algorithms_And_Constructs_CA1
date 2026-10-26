@@ -18,6 +18,11 @@ public class Stack implements StorageInterface {
         capacity = size;
         top = -1;
     }
+
+    // Check if full (8 trays max) - Time Complexity: O(1)
+    public boolean isFull() {
+        return top == capacity - 1;
+    }
     
     // Add tray at Front Side (Push) - Time Complexity: O(1)
     public void push(FoodTray x) {
