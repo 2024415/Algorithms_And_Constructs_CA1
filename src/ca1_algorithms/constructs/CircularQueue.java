@@ -1,4 +1,4 @@
-package algorithms_and_constructs_ca1;
+package ca1_algorithms.constructs;
 
 /**
  * Custom Circular Queue Implementation.
