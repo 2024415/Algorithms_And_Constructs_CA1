@@ -72,7 +72,6 @@ public class CircularQueue implements StorageInterface {
      * Displays the food item present at the front of the queue.
      * Time Complexity: O(1) - Direct array lookup via front pointer.
      */
-    @Override
     public void peek() {
         if (isEmpty()) {
             System.out.println("Queue is empty!");
