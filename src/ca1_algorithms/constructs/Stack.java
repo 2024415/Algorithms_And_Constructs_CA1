@@ -44,6 +44,7 @@ public class Stack implements StorageInterface {
     }
 
     // View top tray at Front Side (Peek) - Time Complexity: O(1)
+    @Override
     public FoodTray peek() {
         if (top == -1) {
             System.out.println("Stack is empty");
