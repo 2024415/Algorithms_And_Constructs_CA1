@@ -30,7 +30,7 @@ public class FoodStorage {
         if (top != null) System.out.println("Top element: " + top.getName() + " (" + top + ")");
     }
 
-    // Kept exact input prompts and if-statement style from original file
+    // Helper method to get and validate food tray details from the user
     public static FoodTray getFoodItem(Scanner sc) {
 
         System.out.println("\nEnter details for food item:");
@@ -54,7 +54,7 @@ public class FoodStorage {
             weight = 100;
         }
         
-        // 3. Best-before check (max 2 weeks, from original FoodStorage.java)
+        // 3. Best-before date check (maximum of 2 weeks from today)
         System.out.print("Best-before (YYYY-MM-DD, max 2 weeks): ");
         String dateInput = sc.nextLine();
 
