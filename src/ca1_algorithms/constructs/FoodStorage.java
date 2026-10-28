@@ -58,7 +58,13 @@ public class FoodStorage {
         System.out.print("Best-before (YYYY-MM-DD, max 2 weeks): ");
         String dateInput = sc.nextLine();
 
-        LocalDate date = LocalDate.parse(dateInput);
+        LocalDate date;
+        try {
+            date = LocalDate.parse(dateInput.trim());
+            } catch (DateTimeParseException e) {
+                System.out.println("⚠ Invalid date format!");
+                date = LocalDate.now().plusWeeks(3); // forces the 2-week check below
+        }
 
         // Check 2-week limit
         if (date.isAfter(LocalDate.now().plusWeeks(2)) || date.isBefore(LocalDate.now())) {
