@@ -5,12 +5,30 @@
 package ca1_algorithms.constructs;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 /**
  *
  * @author Dylan
  */
 public class FoodStorage {
+
+    // Reads a whole number safely - keeps asking until the user types a valid integer
+    public static int readInt(Scanner sc) {
+        while (true) {
+            try {
+                return Integer.parseInt(sc.nextLine().trim());
+                } catch (NumberFormatException e) {
+                    System.out.print("⚠ Please enter a whole number: ");
+            }
+        }
+    }
+    
+    // Shows the top/front tray of ANY storage (works for Stack and CircularQueue - polymorphism)
+    public static void printTop(StorageInterface storage) {
+        FoodTray top = storage.peek();
+        if (top != null) System.out.println("Top element: " + top.getName() + " (" + top + ")");
+    }
 
     // Kept exact input prompts and if-statement style from original file
     public static FoodTray getFoodItem(Scanner sc) {
