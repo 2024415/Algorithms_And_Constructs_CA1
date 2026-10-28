@@ -22,7 +22,7 @@ public class FoodTray extends MenuItem {
     public FoodTray(String name, double weightGrams, LocalDate bestBeforeDate) {
         super(name, weightGrams);
         this.bestBeforeDate = bestBeforeDate;
-        this.placedTime = LocalDateTime.now(); // Auto-stamped from FoodStorage.java
+        this.placedTime = LocalDateTime.now(); // Time the tray was placed in storage (auto-stamped from FoodStorage)
     }
 
     public LocalDate getBestBeforeDate() { return bestBeforeDate; }
@@ -31,7 +31,7 @@ public class FoodTray extends MenuItem {
     @Override
     public String getItemDetails() {
         DateTimeFormatter timeFmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return String.format("%s | %.0fg | Best Before: %s | Stored At: %s",
+        return String.format("%s | %.1fg | Best Before: %s | Stored At: %s",
                 getName(), getWeightGrams(), bestBeforeDate, placedTime.format(timeFmt));
     }
 
