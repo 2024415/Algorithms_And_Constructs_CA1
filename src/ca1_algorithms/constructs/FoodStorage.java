@@ -79,7 +79,108 @@ public class FoodStorage {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        Scanner sc = new Scanner(System.in);
+        int size = 8; // Maximum capacity of the storage is 8 trays
+
+        Stack stack = new Stack(size);
+        CircularQueue q = new CircularQueue(size);
+
+        while (true) {
+            System.out.println("\n--- Fast-Food Storage Menu ---");
+            System.out.println("1. Stack Operations (Front Side Add & Remove)");
+            System.out.println("2. Queue Operations (Front Add, Opposite Side Remove)");
+            System.out.println("3. Exit");
+            System.out.print("Enter your choice: ");
+            int mode = readInt(sc);
+       
+               if (mode == 1) {
+                // STACK MENU (From Stack.java)
+                while (true) {
+                    System.out.println("\n--- Stack Menu ---");
+                    System.out.println("1. Push");
+                    System.out.println("2. Pop");
+                    System.out.println("3. Peek");
+                    System.out.println("4. Display Stack");
+                    System.out.println("5. Search");
+                    System.out.println("6. Back to Main Menu");
+                    System.out.print("Enter your choice: ");
+                    int choice = readInt(sc);
+
+                    if (choice == 6) break;
+
+                    switch (choice) {
+                        case 1:
+                            FoodTray val = getFoodItem(sc);
+                            stack.push(val);
+                            break;
+                        case 2:
+                            FoodTray popped = stack.pop();
+                            if (popped != null) System.out.println("Popped: " + popped);
+                            break;
+                        case 3:
+                            printTop(stack);
+                            break;
+                        case 4:
+                            stack.display();
+                            break;
+                        case 5:
+                            System.out.print("Enter food name to search: ");
+                            stack.search(sc.nextLine());
+                            break;
+                        default:
+                            System.out.println("Invalid choice, try again.");
+                    }
+                }
+            } else if (mode == 2) {
+                // Queue Menu (From CircularQueue.java)
+                while (true) {
+                    System.out.println("\nQueue Operations:");
+                    System.out.println("1. Enqueue");
+                    System.out.println("2. Dequeue");
+                    System.out.println("3. Peek");
+                    System.out.println("4. Display");
+                    System.out.println("5. Size");
+                    System.out.println("6. Search");
+                    System.out.println("7. Back to Main Menu");
+                    System.out.print("Choose an operation (1-7): ");
+                    int choice = readInt(sc);
+
+                    if (choice == 7) break;
+
+                    switch (choice) {
+                        case 1:
+                            FoodTray item = getFoodItem(sc);
+                            q.enqueue(item);
+                            break;
+                        case 2:
+                            FoodTray removed = q.dequeue();
+                            if (removed != null) System.out.println("Dequeued: " + removed);
+                            break;
+                        case 3:
+                            printTop(q);
+                            break;
+                        case 4:
+                            q.display();
+                            break;
+                        case 5:
+                            q.size();
+                            break;
+                        case 6:
+                            System.out.print("Enter food name to search: ");
+                            q.search(sc.nextLine());
+                            break;
+                        default:
+                            System.out.println("Invalid choice! Please try again.");
+                    }
+                }
+            } else if (mode == 3) {
+                System.out.println("Exiting program.");
+                sc.close();
+                return;
+            } else {
+                System.out.println("Invalid choice, try again.");
+            }
+        }
     }
-    
 }
