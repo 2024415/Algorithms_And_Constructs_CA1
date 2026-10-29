@@ -9,15 +9,16 @@ package ca1_algorithms.constructs;
  */
 public class CircularQueue implements StorageInterface {
     private FoodTray[] queue;
-    private int front, rear, size;
+    // front = index of the tray at the removal side, rear = index of the tray most recently added
+    private int front, rear, capacity;
 
-    public CircularQueue(int size) {
-        if (size <= 0) {
+    public CircularQueue(int capacity) {
+        if (capacity <= 0) {
             System.out.println("Invalid capacity provided! Setting default size to 8.");
-            size = 8;
+            capacity = 8;
         }
-        this.size = size;
-        this.queue = new FoodTray[size];
+        this.capacity = capacity;
+        this.queue = new FoodTray[capacity];
         this.front = -1;
         this.rear = -1;
     }
@@ -36,7 +37,7 @@ public class CircularQueue implements StorageInterface {
      * Time Complexity: O(1) - Constant time arithmetic calculation.
      */
     public boolean isFull() {
-        return (rear + 1) % size == front;
+        return (rear + 1) % capacity == front;
     }
 
     /**
@@ -51,14 +52,14 @@ public class CircularQueue implements StorageInterface {
         }
 
         if (isFull()) {
-            System.out.println("Queue is full! Cannot add more trays (Max capacity: " + size + ").");
+            System.out.println("Queue is full! Cannot add more trays (Max capacity: " + capacity + ").");
             return;
         }
 
         if (isEmpty()) {
             front = 0;
         }
-        rear = (rear + 1) % size;
+        rear = (rear + 1) % capacity; // Wrap around to the front if needed
         queue[rear] = item;
         System.out.println("✔ " + item.getName() + " added to the queue.");
     }
@@ -75,12 +76,12 @@ public class CircularQueue implements StorageInterface {
         }
 
         FoodTray item = queue[front];
-        queue[front] = null; // Garbage collector cleanup
+        queue[front] = null; // free the slot
 
-        if (front == rear) { // Only one item was in the queue
-            front = rear = -1;
+        if (front == rear) { // Only one element left in the queue
+            front = rear = -1; // Reset queue
         } else {
-            front = (front + 1) % size;
+            front = (front + 1) % capacity; // Move front pointer forward
         }
 
         System.out.println("✔ " + item.getName() + " removed from the queue.");
@@ -92,12 +93,12 @@ public class CircularQueue implements StorageInterface {
      * Time Complexity: O(1) - Direct array lookup via front pointer.
      */
     @Override
-    public void peek() {
+    public FoodTray peek() {
         if (isEmpty()) {
             System.out.println("Queue is empty! No item to display.");
-            return;
+            return null;
         }
-        System.out.println("Front of the queue: " + queue[front].getName() + " (" + queue[front] + ")");
+        return queue[front];
     }
 
     /**
@@ -113,13 +114,12 @@ public class CircularQueue implements StorageInterface {
         }
 
         System.out.println("--- Queue Contents ---");
-        int count = getCount();
-        int current = front;
-
-        for (int i = 0; i < count; i++) {
-            System.out.println("Position " + (i + 1) + ": " + queue[current]);
-            current = (current + 1) % size;
+        int i = front;
+        while (i != rear) {
+            System.out.println(queue[i]);
+            i = (i + 1) % capacity;
         }
+        System.out.println(queue[rear]); // Print the rear element
     }
 
     /**
@@ -127,22 +127,13 @@ public class CircularQueue implements StorageInterface {
      * Time Complexity: O(1) - Mathematical computation.
      */
     public void size() {
-        int currentSize = getCount();
-        System.out.println("Queue size: " + currentSize + " / " + size);
-    }
-
-    /**
-     * Helper method to compute exact item count safely.
-     * Time Complexity: O(1)
-     */
-    private int getCount() {
         if (isEmpty()) {
-            return 0;
+            System.out.println("Queue size: 0");
+        } else {
+            int currentSize = (rear - front + 1 + capacity) % capacity;
+            if (currentSize == 0) currentSize = capacity;
+            System.out.println("Queue size: " + currentSize);
         }
-        if (rear >= front) {
-            return rear - front + 1;
-        }
-        return size - front + rear + 1;
     }
 
     /**
@@ -164,15 +155,15 @@ public class CircularQueue implements StorageInterface {
 
         String searchName = name.trim();
         boolean found = false;
-        int count = getCount();
-        int current = front;
+        int i = front;
 
-        for (int i = 0; i < count; i++) {
-            if (queue[current] != null && queue[current].getName().equalsIgnoreCase(searchName)) {
-                System.out.println("✔ Found at position " + (i + 1) + ": " + queue[current]);
+        while (true) {
+            if (queue[i] != null && queue[i].getName().equalsIgnoreCase(searchName)) {
+                System.out.println("✔ Found at position: " + queue[i]);
                 found = true;
             }
-            current = (current + 1) % size;
+            if (i == rear) break;
+            i = (i + 1) % capacity;
         }
 
         if (!found) {
