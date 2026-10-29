@@ -19,7 +19,7 @@ public class Stack implements StorageInterface {
         top = -1;
     }
 
-    // Check if full (8 trays max) - Time Complexity: O(1)
+    // Check if full - Time Complexity: O(1)
     public boolean isFull() {
         return top == capacity - 1;
     }
