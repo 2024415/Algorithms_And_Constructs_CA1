@@ -13,7 +13,7 @@ public class CircularQueue implements StorageInterface {
 
     public CircularQueue(int size) {
         if (size <= 0) {
-            System.out.println("⚠ Invalid capacity provided! Setting default size to 8.");
+            System.out.println("Invalid capacity provided! Setting default size to 8.");
             size = 8;
         }
         this.size = size;
@@ -46,12 +46,12 @@ public class CircularQueue implements StorageInterface {
      */
     public void enqueue(FoodTray item) {
         if (item == null) {
-            System.out.println("⚠ Error: Cannot add a null item to the queue!");
+            System.out.println("Error: Cannot add a null item to the queue!");
             return;
         }
 
         if (isFull()) {
-            System.out.println("⚠ Queue is full! Cannot add more trays (Max capacity: " + size + ").");
+            System.out.println("Queue is full! Cannot add more trays (Max capacity: " + size + ").");
             return;
         }
 
@@ -70,7 +70,7 @@ public class CircularQueue implements StorageInterface {
      */
     public FoodTray dequeue() {
         if (isEmpty()) {
-            System.out.println("⚠ Queue is empty! No items to remove.");
+            System.out.println("Queue is empty! No items to remove.");
             return null;
         }
 
@@ -94,7 +94,7 @@ public class CircularQueue implements StorageInterface {
     @Override
     public void peek() {
         if (isEmpty()) {
-            System.out.println("⚠ Queue is empty! No item to display.");
+            System.out.println("Queue is empty! No item to display.");
             return;
         }
         System.out.println("Front of the queue: " + queue[front].getName() + " (" + queue[front] + ")");
@@ -108,7 +108,7 @@ public class CircularQueue implements StorageInterface {
     @Override
     public void display() {
         if (isEmpty()) {
-            System.out.println("⚠ Queue is empty!");
+            System.out.println("Queue is empty!");
             return;
         }
 
@@ -153,12 +153,12 @@ public class CircularQueue implements StorageInterface {
     @Override
     public void search(String name) {
         if (isEmpty()) {
-            System.out.println("⚠ Queue is empty! Search cancelled.");
+            System.out.println("Queue is empty! Search cancelled.");
             return;
         }
 
         if (name == null || name.trim().isEmpty()) {
-            System.out.println("⚠ Invalid search input! Please enter a valid food name.");
+            System.out.println("Invalid search input! Please enter a valid food name.");
             return;
         }
 
