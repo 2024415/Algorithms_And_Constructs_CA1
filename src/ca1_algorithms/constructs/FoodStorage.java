@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 /**
- *
+ * Main menu-driven class for the Fast-Food Party Storage application.
  * @author Dylan
  */
 public class FoodStorage {
@@ -47,10 +47,14 @@ public class FoodStorage {
         
         // 2. Weight check (grams > 0)
         System.out.print("Weight (grams): ");
-        double weight = sc.nextDouble();
-        sc.nextLine(); // clear buffer
+       double weight;
+        try {
+            weight = Double.parseDouble(sc.nextLine().trim());
+        } catch (NumberFormatException e) {
+            weight = 0; // not a number - caught by the check below
+        }
         if (weight <= 0) {
-            System.out.println("⚠ Invalid weight! Setting to default: 100g.");
+            System.out.println("Invalid weight! Setting to default: 100g.");
             weight = 100;
         }
         
@@ -95,7 +99,7 @@ public class FoodStorage {
             int mode = readInt(sc);
        
                if (mode == 1) {
-                // STACK MENU (From Stack.java)
+                // STACK MENU
                 while (true) {
                     System.out.println("\n--- Stack Menu ---");
                     System.out.println("1. Push");
