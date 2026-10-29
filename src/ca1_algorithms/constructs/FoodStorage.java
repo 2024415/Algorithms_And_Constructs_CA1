@@ -25,7 +25,7 @@ public class FoodStorage {
         if (!name.equalsIgnoreCase("Burger") && !name.equalsIgnoreCase("Pizza") &&
             !name.equalsIgnoreCase("Fries") && !name.equalsIgnoreCase("Sandwich") &&
             !name.equalsIgnoreCase("Hotdog")) {
-            System.out.println("⚠ Invalid food item! Setting to default: Burger.");
+            System.out.println("Invalid food item! Setting to default: Burger.");
             name = "Burger";
         }
 
@@ -35,11 +35,11 @@ public class FoodStorage {
         try {
             weight = Double.parseDouble(sc.nextLine().trim());
         } catch (Exception e) {
-            System.out.println("⚠ Invalid weight input format!");
+            System.out.println("Invalid weight input format!");
         }
 
         if (weight <= 0) {
-            System.out.println("⚠ Weight must be positive! Setting to default: 100g.");
+            System.out.println("Weight must be positive! Setting to default: 100g.");
             weight = 100;
         }
 
@@ -51,11 +51,11 @@ public class FoodStorage {
         try {
             date = LocalDate.parse(dateInput);
             if (date.isAfter(LocalDate.now().plusWeeks(2)) || date.isBefore(LocalDate.now())) {
-                System.out.println("⚠ Date out of allowed range (max 2 weeks)! Setting to max limit.");
+                System.out.println("Date out of allowed range (max 2 weeks)! Setting to max limit.");
                 date = LocalDate.now().plusWeeks(2);
             }
         } catch (Exception e) {
-            System.out.println("⚠ Invalid date format! Setting to default (2 weeks from today).");
+            System.out.println("Invalid date format! Setting to default (2 weeks from today).");
             date = LocalDate.now().plusWeeks(2);
         }
 
@@ -83,7 +83,7 @@ public class FoodStorage {
             try {
                 mode = Integer.parseInt(sc.nextLine().trim());
             } catch (Exception e) {
-                System.out.println("⚠ Input must be a valid number!");
+                System.out.println("Input must be a valid number!");
                 continue;
             }
 
@@ -103,7 +103,7 @@ public class FoodStorage {
                     try {
                         choice = Integer.parseInt(sc.nextLine().trim());
                     } catch (Exception e) {
-                        System.out.println("⚠ Input must be a valid number!");
+                        System.out.println("Input must be a valid number!");
                         continue;
                     }
 
@@ -134,7 +134,7 @@ public class FoodStorage {
                             stack.search(sc.nextLine());
                             break;
                         default:
-                            System.out.println("⚠ Invalid choice! Please select 1-6.");
+                            System.out.println("Invalid choice! Please select 1-6.");
                     }
                 }
             } else if (mode == 2) {
@@ -154,7 +154,7 @@ public class FoodStorage {
                     try {
                         choice = Integer.parseInt(sc.nextLine().trim());
                     } catch (Exception e) {
-                        System.out.println("⚠ Input must be a valid number!");
+                        System.out.println("Input must be a valid number!");
                         continue;
                     }
 
@@ -182,7 +182,7 @@ public class FoodStorage {
                             q.search(sc.nextLine());
                             break;
                         default:
-                            System.out.println("⚠ Invalid choice! Please select 1-7.");
+                            System.out.println("Invalid choice! Please select 1-7.");
                     }
                 }
             } else if (mode == 3) {
@@ -190,7 +190,7 @@ public class FoodStorage {
                 sc.close();
                 return;
             } else {
-                System.out.println("⚠ Invalid choice! Please select 1, 2, or 3.");
+                System.out.println("Invalid choice! Please select 1, 2, or 3.");
             }
         }
     }
