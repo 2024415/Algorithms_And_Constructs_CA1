@@ -1,7 +1,7 @@
 package ca1_algorithms.constructs;
 
 /**
- * StorageInterface defines the contract for Fast-Food storage data structures.
+ * Shared interface for Stack and CircularQueue storage structures.
  * Demonstrates the Object-Oriented Programming principle of Abstraction.
  * 
  * @author Dylan, Gabriel
@@ -15,6 +15,12 @@ public interface StorageInterface {
     boolean isEmpty();
 
     /**
+     * Views the food tray currently at the top/front of the storage.
+     * @return FoodTray object at the top/front or null if empty.
+     */
+    FoodTray peek();
+
+    /**
      * Displays all food items currently inside the storage structure.
      */
     void display();
@@ -24,9 +30,4 @@ public interface StorageInterface {
      * @param foodName The name of the food item to find.
      */
     void search(String foodName);
-
-    /**
-     * Views the food tray currently at the top/front of the storage.
-     */
-    void peek();
 }
