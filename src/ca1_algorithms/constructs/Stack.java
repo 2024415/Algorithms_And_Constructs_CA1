@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ca1_algorithms.constructs;
-
+ 
 /**
  *
- * @author Dylan
+ * @author Dylan, Gabriel L
  */
 public class Stack implements StorageInterface {
     private FoodTray[] arr;

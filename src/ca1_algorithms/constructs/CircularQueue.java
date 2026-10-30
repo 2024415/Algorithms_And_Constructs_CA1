@@ -5,7 +5,7 @@ package ca1_algorithms.constructs;
  * Models storing up to 8 food trays (FIFO: Enqueue at front, Dequeue at opposite side).
  * Implements StorageInterface for Abstraction and Polymorphism.
  * 
- * @author Gabriel, Dylan
+ * @author Gabriel L, Dylan
  */
 public class CircularQueue implements StorageInterface {
     private FoodTray[] queue;

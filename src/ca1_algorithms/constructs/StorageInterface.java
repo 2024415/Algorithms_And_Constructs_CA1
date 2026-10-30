@@ -4,7 +4,7 @@ package ca1_algorithms.constructs;
  * Shared interface for Stack and CircularQueue storage structures.
  * Demonstrates the Object-Oriented Programming principle of Abstraction.
  * 
- * @author Dylan, Gabriel
+ * @author Dylan, Gabriel L.
  */
 public interface StorageInterface {
     

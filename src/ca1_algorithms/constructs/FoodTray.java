@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author Dylan
+ * @author Dylan, Gabriel L
  * Models a physical fast-food tray stored in the unit.
  * All getters and object instantiations in this class operate at O(1) Time Complexity.
  */
