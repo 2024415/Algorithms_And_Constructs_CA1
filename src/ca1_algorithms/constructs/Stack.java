@@ -3,10 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ca1_algorithms.constructs;
- 
+
 /**
  *
- * @author Dylan, Gabriel L
+ * @author Dylan
  */
 public class Stack implements StorageInterface {
     private FoodTray[] arr;
@@ -18,7 +18,7 @@ public class Stack implements StorageInterface {
         capacity = size;
         top = -1;
     }
-
+    
     // Check if full - Time Complexity: O(1)
     public boolean isFull() {
         return top == capacity - 1;
@@ -51,9 +51,9 @@ public class Stack implements StorageInterface {
             return null;
         }
         return arr[top];
-    }    
+    } 
     
-   // Check if empty - Time Complexity: O(1)
+    // Check if empty - Time Complexity: O(1)
     @Override
     public boolean isEmpty() {
         return top == -1;
