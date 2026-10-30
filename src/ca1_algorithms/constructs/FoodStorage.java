@@ -12,7 +12,7 @@ import java.time.format.DateTimeParseException;
  * Main menu-driven driver application for the Fast-Food Storage System.
  * Demonstrates abstraction, polymorphism, error handling, and data structures (Stack & Circular Queue).
  * 
- * @author Dylan, Gabriel
+ * @author Dylan, Gabriel L
  */
 public class FoodStorage {
 
