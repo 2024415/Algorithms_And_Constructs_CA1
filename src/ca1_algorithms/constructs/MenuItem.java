@@ -6,7 +6,7 @@ package ca1_algorithms.constructs;
 
 /**
  *
- * @author Dylan
+ * @author Dylan, Gabriel L
  */
 // Abstract parent class demonstrating Inheritance & Encapsulation
 public abstract class MenuItem {
