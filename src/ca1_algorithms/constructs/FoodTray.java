@@ -9,11 +9,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  *
- * @author Dylan, Gabriel L
- * Models a physical fast-food tray stored in the unit.
- * All getters and object instantiations in this class operate at O(1) Time Complexity.
+ * @author Dylan
  */
-
 // Child class inheriting from MenuItem
 public class FoodTray extends MenuItem {
     private LocalDate bestBeforeDate;
@@ -22,7 +19,7 @@ public class FoodTray extends MenuItem {
     public FoodTray(String name, double weightGrams, LocalDate bestBeforeDate) {
         super(name, weightGrams);
         this.bestBeforeDate = bestBeforeDate;
-        this.placedTime = LocalDateTime.now(); // Time the tray was placed in storage (auto-stamped from FoodStorage)
+        this.placedTime = LocalDateTime.now(); // Time the tray was placed in storage (auto-stamped)
     }
 
     public LocalDate getBestBeforeDate() { return bestBeforeDate; }
